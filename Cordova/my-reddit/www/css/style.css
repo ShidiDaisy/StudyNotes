@@ -1,0 +1,4 @@
+h2.story-title{
+	white-space: normal;
+	height: 3.6em; /*keep the link at the bottom of each tab*/
+}

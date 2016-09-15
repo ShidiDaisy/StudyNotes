@@ -12,7 +12,6 @@ namespace ConsoleApplication1
         {
             //Next line start a new line
             Console.WriteLine("Hello World");
-            Console.WriteLine("Hello World");
 
        //1. Get user input
             //Next line at the same line

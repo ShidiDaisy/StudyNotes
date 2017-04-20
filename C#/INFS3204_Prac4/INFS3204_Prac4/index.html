@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <script>
+        var uri = 'api/Player';
+       
+        $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                url: uri + '/GetAllPlayers',
+                success: function (data) {
+                    displayData(data);
+                }
+            })
+
+        });
+
+        function displayData(data) {
+            $('#players').empty();
+            
+            $.each(data, function (key, item) {
+                $('<li>', {text: formatItem(item)}).appendTo($('#players'));
+            });
+        }
+
+        function formatItem(item) {
+            var date = (item.Date_of_birth.replace(['T00:00:00'], ""))
+            return item.Registration_ID + ", " + item.Player_name + ", " + item.Team_name + ", " + date;
+        }
+
+        function find() {
+            var option = $('#SdDropdown').val();
+            var value = $('#sdTextbox').val();
+
+            if (value == "") {
+                alert("Please put in search value");
+            } else
+            {
+                $.ajax({
+                    type: 'GET',
+                    url: uri + '/GetPlayerInfo/',
+                    data: { 'option': option, 'value': value },
+                    success: function (data) {
+                        displayData(data);
+                    },
+                    error: function (jqXHR, textStatus, err) {
+                        $('#players').text('Error:' + err);
+                    }
+                });
+            }
+        }
+
+        function del() {
+            var option = $('#SdDropdown').val();
+            var value = $('#sdTextbox').val();
+
+            if (value == "") {
+                alert("Please put in search value");
+            } else {
+                $.ajax({
+                    type: 'DELETE',
+                    url: uri + '/DeletePlayer/' + option + '/' + value,
+                    success: function (data) {
+                        displayData(data);
+                    },
+                    error: function (jqXHR, textStatus, err) {
+                        $('#players').text('Error:' + err);
+                    }
+                });
+            }
+        }
+
+        function register() {
+            var id = $('#registrationText').val();
+            var name = $('#firstNameText').val() + " " + $('#lastNameText').val();
+            var team = $('#teamText').val();
+            var dob = $('#dobText').val();
+
+            if (id == "" || name == "" || team == "" || dob == "")
+            {
+                alert("Please fill in all field");
+            }
+            else{
+                var player = { Registration_ID: id, Player_name: name, Team_name: team, Date_of_birth: dob };
+                $.ajax({
+                    type: 'POST',
+                    url: uri + '/PostPlayer',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify(player),
+                    success: function (data) {
+                            displayData(data);
+                    }
+                })
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div>
+        <h2>All Players</h2>
+        <ul id="players">
+        </ul>
+    </div>
+    <div>
+        <h2>Search or Delete</h2>
+        <form>
+            <select name="SdDropdown" id="SdDropdown">
+                <option value="name">Name</option>
+                <option value="id">ID</option>
+            </select>
+            <input id="sdTextbox" type="text" />
+            <input id="searchButton" type="button" value="Search" onclick="find();" />
+            <input id="delButton" type="button" value="Delete" onclick="del();" />
+        </form>
+    </div>
+    <div>
+        <h2>Player Registration</h2>
+        <form id="registrationForm">
+            <label for="registrationText">Registration ID:</label></br>
+            <input id="registrationText" type="text" /></br>
+            <label for="firstNameText">First Name:</label></br>
+            <input id="firstNameText" type="text" /></br>
+            <label for="lastNameText">Last Name:</label></br>
+            <input id="lastNameText" type="text" /></br>
+            <label for="teamText">Team Name:</label></br>
+            <input id="teamText" type="text" /></br>
+            <label for="dobText">Date of Birth:</label></br>
+            <input id="dobText" type="date" min="1900-01-01" required/></br>
+            <input id="regButton" type="button" value="Player Registration" onclick="register();" />
+        </form>
+    </div>
+</body>
+</html>

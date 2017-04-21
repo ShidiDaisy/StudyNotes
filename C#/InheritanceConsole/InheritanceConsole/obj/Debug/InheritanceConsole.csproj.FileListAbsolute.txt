@@ -1,0 +1,6 @@
+C:\Users\Shidi\Google Drive\Academic\CodingPracs\C#\InheritanceConsole\InheritanceConsole\bin\Debug\InheritanceConsole.exe.config
+C:\Users\Shidi\Google Drive\Academic\CodingPracs\C#\InheritanceConsole\InheritanceConsole\bin\Debug\InheritanceConsole.exe
+C:\Users\Shidi\Google Drive\Academic\CodingPracs\C#\InheritanceConsole\InheritanceConsole\bin\Debug\InheritanceConsole.pdb
+C:\Users\Shidi\Google Drive\Academic\CodingPracs\C#\InheritanceConsole\InheritanceConsole\obj\Debug\InheritanceConsole.csprojResolveAssemblyReference.cache
+C:\Users\Shidi\Google Drive\Academic\CodingPracs\C#\InheritanceConsole\InheritanceConsole\obj\Debug\InheritanceConsole.exe
+C:\Users\Shidi\Google Drive\Academic\CodingPracs\C#\InheritanceConsole\InheritanceConsole\obj\Debug\InheritanceConsole.pdb

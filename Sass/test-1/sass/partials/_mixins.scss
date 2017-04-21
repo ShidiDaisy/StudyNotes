@@ -1,0 +1,5 @@
+//function that we pass value into
+//pass value black if no color is passing
+@mixin default-text-color($tc: $black){
+	color: $tc;
+}

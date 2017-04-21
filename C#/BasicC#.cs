@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,6 +36,13 @@ namespace ConsoleApplication1
 
             //{0}, {1}...: format different piece of data.
             Console.WriteLine("This {0}.  The value is {1}.", "is a test", 42);
+
+            //2.1 Convert
+            //2.1.1 String to Int
+            int x = Int32.Parse(TextBoxD1.Text);
+
+            //2.1.2 String to Float
+            result = Convert.ToSingle(value);
 
             //3. Calculation
             Console.WriteLine("5 + 3 = " + (5 + 3));
@@ -220,8 +227,22 @@ namespace ConsoleApplication1
             List<string> strList = new List<string>(new string[] { "Tom", "Paul" });
             Console.WriteLine("Tom in list " + strList.Contains("tom", StringComparer.OrdinalIgnoreCase));
 
-            //9.9 Sort the list
+            //9.9 Sort the list in Alphabetic
             strList.Sort();
+
+            //9.10 List of Customer type
+            List<Customer> customers = new List<Customer>(2);
+                                                        //initial capacity
+            customers.Add(customer1);
+            customers.Add(customer2);
+            customers.Add(customer3);
+
+
+            public class Customer
+            {
+                public int ID { get; set; }
+                public string Name { get; set; }
+            }
 
             //10. Exception Handling: When we want to keep errors from going out to the user
             try
